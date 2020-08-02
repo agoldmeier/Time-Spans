@@ -1,0 +1,37 @@
+---
+title: "M10 Time Span Proj"
+author: "Aaron"
+date: "8/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+install.packages("tidyverse")
+library(tidyverse)
+library(lubridate)
+Perm_event <- read_csv("https://data.cityofnewyork.us/resource/tvpp-9vvx.csv")
+Perm_event
+```
+
+## NYC Permitted Events, Date and Time
+
+In this R Markdown, I am going to anaylze and compare one of the most important parts of the Permitted Events dataset for NYC, the start and end times of the events. 
+
+As you can see from the original dataset, the columns representing date-times are labeled, "Start Date/Time" and "End Date/Time". These columns illustrate when the permitted events began and ended. Comparing these columns will help us understand different aspects of the events. 
+
+Working with these two categories can be helpful in discovering useful time spans because I can find the difference between the two columns leading me to the length of each event. The spans of these columns are described in terms of year, month, and day as well as hour, minute, second. This can be useful in determining whether events lasted multiple days vs just a few hours.  
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
