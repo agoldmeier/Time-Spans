@@ -23,7 +23,10 @@ As you can see from the original dataset, the columns representing date-times ar
 Working with these two categories can be helpful in discovering useful time spans because I can find the difference between the two columns leading me to the length of each event. The spans of these columns are described in terms of year, month, and day as well as hour, minute, second. This can be useful in determining whether events lasted multiple days vs just a few hours.  
 
 ```{r cars}
-summary(cars)
+Perm_events1 <- Perm_event%>%
+  mutate(Perm_event,length_event=hour(end_date_time)-hour(start_date_time),
+         length_event_day=day(end_date_time)-day(start_date_time))
+           
 ```
 
 ## Including Plots
