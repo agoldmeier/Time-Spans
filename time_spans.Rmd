@@ -24,17 +24,20 @@ Working with these two categories can be helpful in discovering useful time span
 
 ```{r cars}
 Perm_events1 <- Perm_event%>%
-  mutate(Perm_event,length_event=hour(end_date_time)-hour(start_date_time),
+  mutate(Perm_event,length_event_hr=hour(end_date_time)-hour(start_date_time),
          length_event_day=day(end_date_time)-day(start_date_time))
-           
+Perm_events1%>%
+  select(start_date_time,end_date_time,length_event_hr,length_event_day)
+  
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
+In the above chart, I have created two new columns which illustrate the length in hours of each event as well as the length in days. 
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+Perm_events2 <- Perm_events1%>%
+  mutate(Perm_events1,length_event_hr=hours(length_event_hr))
+Perm_events2%>%
+  select(start_date_time,end_date_time,length_event_hr,length_event_day)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
