@@ -31,7 +31,7 @@ Perm_events1%>%
   
 ```
 
-In the above chart, I have created two new columns which illustrate the length in hours of each event as well as the length in days. 
+In the above chart, I have created two new columns which illustrate the length in hours of each event as well as the length in days. I did this by creating new columns with these equations set inside, using mutate. I then used the functions, "hour" and "day" in order to pick the specific variables within the strings to subtract from each other. 
 
 ```{r pressure, echo=FALSE}
 Perm_events2 <- Perm_events1%>%
@@ -40,4 +40,4 @@ Perm_events2%>%
   select(start_date_time,end_date_time,length_event_hr,length_event_day)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Finally, to make the hour column clearer, I have added the duration to the set. Now, instead of just having a number in the column, making it confusing as to how long the event was, the hours, minutes, and seconds are present for clarification. Since this is a period of time, I did this by using the period function, "hour", to help distinguish the lengths of the events.   
