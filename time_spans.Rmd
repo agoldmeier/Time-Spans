@@ -25,14 +25,22 @@ avg_length <- summarise(by_borough,
                         length=mean(length_event_hr,na.rm = TRUE))
 
 ggplot(data=avg_lengths,mapping=aes(x=event_borough,y=length))+
-  geom_boxplot()
+  geom_boxplot()+
+  labs(title = "Longest average events take place in Brooklyn")
 
 ```
 
 ### Food
 
 ```{r}
-
+by_boroughs <- group_by(Restaurant,boro)
+sum_cuisines <- summarise(by_boroughs,
+                        count=n())
+sum_cuisines
+                        
+ggplot(data=sum_cuisines,mapping=aes(x=boro,y=count))+
+  geom_boxplot()+
+  labs(title = "Most cuisine options are in Manhattan")
 ```
 
 ## Column 2
