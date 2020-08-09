@@ -1,43 +1,66 @@
 ---
-title: "M10 Time Span Proj"
-author: "Aaron"
-date: "8/2/2020"
-output: html_document
+title: "Restaurant Event Dashboard"
+output: flexdashboard::flex_dashboard
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include = FALSE}
 install.packages("tidyverse")
+library(ggplot2)
+library(dplyr)
 library(tidyverse)
 library(lubridate)
 Perm_event <- read_csv("https://data.cityofnewyork.us/resource/tvpp-9vvx.csv")
-Perm_event
+Restaurant <- read_csv("https://data.cityofnewyork.us/resource/43nn-pn8j.csv")
+knitr::opts_chunk$set(fig.width = 5, fig.asp = 1/3)
 ```
 
-## NYC Permitted Events, Date and Time
+## Column 1
 
-In this R Markdown, I am going to anaylze and compare one of the most important parts of the Permitted Events dataset for NYC, the start and end times of the events. 
+### Event Length
 
-As you can see from the original dataset, the columns representing date-times are labeled, "Start Date/Time" and "End Date/Time". These columns illustrate when the permitted events began and ended. Comparing these columns will help us understand different aspects of the events. 
+```{r}
+by_borough <- group_by(Perm_events1,event_borough)
+avg_length <- summarise(by_borough,
+                        count=n(),
+                        length=mean(length_event_hr,na.rm = TRUE))
 
-Working with these two categories can be helpful in discovering useful time spans because I can find the difference between the two columns leading me to the length of each event. The spans of these columns are described in terms of year, month, and day as well as hour, minute, second. This can be useful in determining whether events lasted multiple days vs just a few hours.  
+ggplot(data=avg_lengths,mapping=aes(x=event_borough,y=length))+
+  geom_boxplot()
 
-```{r cars}
+```
+
+### Food
+
+```{r}
+
+```
+
+## Column 2
+
+### Cuisine Description
+
+```{r}
+Restaurant%>%
+  mutate(cuisine_descriptions=fct_collapse(cuisine_description,
+                                          USA= c("American","Bagels/Pretzels"),
+                                          BBQ= c("Hamburgers","Barbecue","Tex-Mex","Steak","Hotdogs/Pretzels"),
+                                          Deli= c("Delicatessen","Jewish/Kosher"),
+                                          Other= c("Other","Not Listed/Not Applicable"),
+                                          Dessert= c("Donuts","Bakery","Ice Cream, Gelato, Yogurt, Ices"),
+                                          Drinks= c("Café/Coffee/Tea","Juice, Smoothies, Fruit Salads","Bottled beverages, including water, sodas, juices, etc.")))%>%
+  count(cuisine_descriptions,sort=TRUE)%>%
+  DT::datatable()
+```
+
+### Event Length 
+
+```{r}
 Perm_events1 <- Perm_event%>%
   mutate(Perm_event,length_event_hr=hour(end_date_time)-hour(start_date_time),
          length_event_day=day(end_date_time)-day(start_date_time))
-Perm_events1%>%
-  select(start_date_time,end_date_time,length_event_hr,length_event_day)
-  
-```
-
-In the above chart, I have created two new columns which illustrate the length in hours of each event as well as the length in days. I did this by creating new columns with these equations set inside, using mutate. I then used the functions, "hour" and "day" in order to pick the specific variables within the strings to subtract from each other. 
-
-```{r pressure, echo=FALSE}
 Perm_events2 <- Perm_events1%>%
   mutate(Perm_events1,length_event_hr=hours(length_event_hr))
 Perm_events2%>%
-  select(start_date_time,end_date_time,length_event_hr,length_event_day)
+  select(event_borough,start_date_time,end_date_time,length_event_hr,length_event_day)%>%
+  DT::datatable()
 ```
-
-Finally, to make the hour column clearer, I have added the duration to the set. Now, instead of just having a number in the column, making it confusing as to how long the event was, the hours, minutes, and seconds are present for clarification. Since this is a period of time, I did this by using the period function, "hour", to help distinguish the lengths of the events.   
