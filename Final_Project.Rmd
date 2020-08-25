@@ -37,6 +37,8 @@ ggplot(data=avg_lengths,mapping=aes(x=event_borough,y=length))+
 
 ```
 
+Here, as you can see, the longest average length of events take place in the Brooklyn borough. The second borough with the longest average event time span is Queens. I think that this is the perfect place to be for the reason that you do not want the events going on in your area to be too long but you also do not want them to be too short. Queens has an average event length of about 6 hours. This is plenty of time for one to bring their family to check out for an hour, or for someone interested in checking out what is happening in their neighborhood as an adventure! 
+
 ### Cuisine Options
 
 ```{r}
