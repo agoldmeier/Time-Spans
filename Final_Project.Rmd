@@ -79,15 +79,6 @@ sum_date%>%
   
 ```
 
-### Event Length 
+## Conclusion
 
-```{r}
-Perm_events1 <- Perm_event%>%
-  mutate(Perm_event,length_event_hr=hour(end_date_time)-hour(start_date_time),
-         length_event_day=day(end_date_time)-day(start_date_time))
-Perm_events2 <- Perm_events1%>%
-  mutate(Perm_events1,length_event_hr=hours(length_event_hr))
-Perm_events2%>%
-  select(event_borough,start_date_time,end_date_time,length_event_hr,length_event_day)%>%
-  DT::datatable()
-```
+
