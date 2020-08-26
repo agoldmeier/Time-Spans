@@ -45,12 +45,13 @@ Here, as you can see, the longest average length of events take place in the Bro
 by_boroughs <- group_by(Restaurant,boro)
 sum_cuisines <- summarise(by_boroughs,
                         count=n())
-sum_cuisines
-                        
+          
 ggplot(data=sum_cuisines,mapping=aes(x=boro,y=count))+
   geom_boxplot()+
-  labs(title = "Most cuisine options are in Manhattan")
+  labs(title = "Most cuisine options are in Manhattan")              
 ```
+
+As you can see here, Manhattan has the most options for different types of cuisines and number of restaurants, but Queens is a close second. As someone who lives in Manhattan on the Upper West Side at the moment, and as I'm sure you know, the city is always pretty noisy. With this conclusion, I would recommend Queens as a great place for a family to live because there are still such a large number of cuisine options there with the benefit of not too many, leading to a noisy neighborhood and a newborn not being able to sleep.
 
 ### When are events taking place in each borough?
 
