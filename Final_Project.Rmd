@@ -1,7 +1,6 @@
 ---
 title: "Queens, A Borough For A Family"
 output: html_document
-
 ---
 
 ```{r setup, include = FALSE}
@@ -80,7 +79,9 @@ sum_date%>%
   
 ```
 
+Events are such an important part of why New York is so amazing! While Queens does not have the most events throughout the week and weekend compared to Manhattan, there were still around 100 events taking place over the past few months. This borough is the perfect place for either a new family that wants the option to go to an event during the week or on the weekend, or one that wants to stay in and not worry about too much noise outside! For such a noisy city, Queens gets the best of both worlds. It is the perfect compromise.
 
 ## Conclusion
 
+What is amazing about all of the different boroughs of New York is that they are easy fairly easy to move around between. 
 
